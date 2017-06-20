@@ -5,7 +5,7 @@ var app = new Clarifai.App(
 );
 
 // predict the contents of an image by passing in a url
-app.models.predict(Clarifai.GENERAL_MODEL, 'https://static.pexels.com/photos/7823/selfie.jpg').then(
+app.models.predict(Clarifai.GENERAL_MODEL, 'https://dhei5unw3vrsx.cloudfront.net/images/skateboard_resized.jpg').then(
     function(response) {
         console.log(JSON.stringify(response));
     },
