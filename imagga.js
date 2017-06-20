@@ -3,7 +3,7 @@ var unirest = require("unirest");
 var req = unirest("GET", "http://api.imagga.com/v1/tagging");
 
 req.query({
-  "url": "https://static.pexels.com/photos/7823/selfie.jpg",
+  "url": "https://dhei5unw3vrsx.cloudfront.net/images/skateboard_resized.jpg",
   "version": "2"
 });
 

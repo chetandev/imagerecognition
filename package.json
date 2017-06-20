@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "clarifai": "^2.1.8",
+    "request": "^2.81.0",
     "unirest": "^0.5.1"
   }
 }
