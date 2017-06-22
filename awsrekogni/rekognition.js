@@ -36,7 +36,7 @@ function searchFaces(faceId) {
         rekognition.searchFaces({
             CollectionId: process.env.COLLECTION,
             FaceId: faceId,
-            FaceMatchThreshold: 50
+            FaceMatchThreshold: 70
         }, function(err, data) {
 
             if (err) {

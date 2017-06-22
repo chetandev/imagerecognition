@@ -103,6 +103,19 @@ function obj() {
 
 
 
+//get single value from hash
+    this.getSingleHvalue = function(key, element) {
+        return new Promise(function(resolve, reject) {
+            client.hgetAsync(key, element)
+                .then(function(result) {
+                    resolve(result);
+                })
+                .catch(function(err) {
+                    reject(err);
+                });
+        });
+    }
+
 
     //get multiple hash // 
     this.getMHobj = function(args, prefix) {

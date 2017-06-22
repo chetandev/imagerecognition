@@ -46,7 +46,7 @@ router.post('/upload', upload.any(), function(req, res, next) {
                             var matchedFacesArr = result.FaceMatches;
 
                             if (matchedFacesArr.length == 0) {
-                                redis.setHobj("uniqePaths", [faceId, s3Location])
+                                redis.setHobj("upaths", [faceId, s3Location])
                             }
 
 
@@ -57,7 +57,7 @@ router.post('/upload', upload.any(), function(req, res, next) {
                         })
 
                 });
-                res.send("success");
+                res.send(s3Location);
             } else {
                 res.status(500).send("no face was found in the image")
 
