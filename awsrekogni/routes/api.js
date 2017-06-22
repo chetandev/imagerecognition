@@ -71,7 +71,30 @@ router.post('/upload', upload.any(), function(req, res, next) {
 });
 
 
+router.get('/getsimilarimages/:faceId', function(req, res, next) {
+    var faceMatches = [];
+    reBl.searchFaces(req.params.faceId)
+        .then(function(result) {
+            var matchedFacesArr = result.FaceMatches;
+            if (matchedFacesArr.length > 0) {
+                matchedFacesArr.forEach(function(item) {
+                    var faceId = item.Face.FaceId
 
+                    redis.getSingleHvalue("paths", faceId)
+                        .then(function(result) {
+                            faceMatches.push(result);
+                        });
+                })
+                res.send(faceMatches);
+            } else {
+                res.status(500).send("no similar face was found with the given faceId")
+            }
+        })
+        .catch(function(err) {
+            console.log(err)
+            res.status(500).send(err)
+        })
+});
 
 
 
