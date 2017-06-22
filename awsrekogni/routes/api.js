@@ -7,7 +7,8 @@ var multer = require('multer')
 var multerS3 = require('multer-s3')
 var reBl = require('../rekognition.js')
 var redis = require('../redis.js');
-
+var _ = require('underscore');
+var Promise = require('bluebird')
 
 
 
@@ -77,15 +78,20 @@ router.get('/getsimilarimages/:faceId', function(req, res, next) {
         .then(function(result) {
             var matchedFacesArr = result.FaceMatches;
             if (matchedFacesArr.length > 0) {
-                matchedFacesArr.forEach(function(item) {
+
+                Promise.each(matchedFacesArr, function(item) {
                     var faceId = item.Face.FaceId
 
-                    redis.getSingleHvalue("paths", faceId)
+                    return redis.getSingleHvalue("paths", faceId)
                         .then(function(result) {
+                            console.log(result)
                             faceMatches.push(result);
                         });
-                })
-                res.send(faceMatches);
+                }).then(function(allItems) {
+                    console.log(faceMatches)
+                    res.send(faceMatches);
+                });
+
             } else {
                 res.status(500).send("no similar face was found with the given faceId")
             }
@@ -97,43 +103,43 @@ router.get('/getsimilarimages/:faceId', function(req, res, next) {
 });
 
 
+router.get('/people', function(req, res, next) {
+    var images = [];
+    redis.getHobj("upaths")
+        .then(function(result) {
+            // var arr = _.uniq(_.values(result));
+            var arr = [];
+            for (var key in result) {
+                arr.push({ "key": key, "url": result[key] })
+            }
+            res.send(arr)
+        })
+        .catch(function(err) {
+
+            res.status(500).send(err);
+        })
+
+});
+
+router.get('/all', function(req, res, next) {
+    var images = [];
+    redis.getHobj("paths")
+        .then(function(result) {
+            var arr = _.uniq(_.values(result));
+            console.log(arr)
+            res.send(arr)
+        })
+        .catch(function(err) {
+
+            res.status(500).send(err);
+        })
+
+});
 
 
 
-// router.post('/upload', upload.any(), function(req, res, next) {
 
-//     bl.postS3(req.files[0])
-//         .then(function(result) {
-//             console.log('uploaded to s3')
-//             return reBl.searchFacesByImage(req.files[0].key)
-//         })
-//         .then(function(result) {
-//             console.log('search by images to collection ')
-//             var faceNum = result.FaceMatches.length;
-//             console.log('length of matched faces ' + faceNum)
-//             if (faceNum > 0) {
-//                 result.FaceMatches.forEach(function(item) {
-//                     var matcheKeyName = item.Face.ExternalImageId;
-//                     return redis.sadd(matcheKeyName, req.files[0].location)
-//                 });
 
-//             } else {
-
-//                 return reBl.indexFaces(req.files[0].key).then(function(result) {
-//                     console.log('indexed to collection')
-//                     return redis.sadd(req.files[0].key, req.files[0].location)
-//                 })
-//             }
-//         })
-//         .then(function(result) {
-
-//             res.send("success")
-//         })
-//         .catch(function(err) {
-//             console.log(err)
-//             res.status(500).send(err)
-//         })
-// });
 
 
 module.exports = router;

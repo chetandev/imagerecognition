@@ -1,11 +1,22 @@
 graphite.factory('data', ['$http', function($http) {
     return function() {
         var self = {};
-        self.get_server_data = function() {
-            var promise = $http({ method: 'GET', url: '/graphite/listner' });
+        self.getAllImages = function() {
+            var promise = $http({ method: 'GET', url: '/api/all' });
+            return promise;
+        }
+
+        self.getUniqueImages = function() {
+            var promise = $http({ method: 'GET', url: '/api/people' });
+            return promise;
+        }
+
+        self.getImageByFaceId = function(faceId) {
+            var promise = $http({ method: 'GET', url: '/api/getsimilarimages/' + faceId });
             return promise;
         }
         return self;
+
     }
 }])
 

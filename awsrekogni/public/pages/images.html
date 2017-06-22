@@ -1,11 +1,9 @@
 <div class="container">
-    <ul id="imageslist">
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
-        <li><img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"></li>
+    <ul >
+        <li ng-repeat="item in images"><img src="{{item}}" alt="Mountain View" style="width:128px;height:128px; float:left;padding: 50px"></li>
     </ul>
 </div>
+
+
+
+<div ng-show="gif"> <img src="/images/load.gif"></div>

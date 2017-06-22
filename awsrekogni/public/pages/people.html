@@ -1,14 +1,19 @@
 <div class="container">
     <ul id="imageslist">
-        <li>
-            <a href="#/allimages">
-                <img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"> Person1
-            </a>
-        </li>
-        <li>
-            <a href="#/allimages">
-                <img src="/Users/rakshita/Desktop/landscape-wallpapers.png" alt="Mountain View" style="width:128px;height:128px;"> Person2
+        <li ng-repeat="item in images">
+            <a ng-click="getImageByFaceId(item.key)" href="">
+                <img src="{{item.url}}" alt="Mountain View" style="width:128px;height:128px;">
             </a>
         </li>
     </ul>
 </div>
+<div >
+    <ul id="imageslist">
+        <li ng-repeat="item in imagesByFaceId">
+            <img src="{{item}}" alt="" style="width:128px;height:128px;">
+        </li>
+    </ul>
+</div>
+
+
+<div ng-show="gif"> <img src="/images/load.gif"></div>
