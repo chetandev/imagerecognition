@@ -9,69 +9,37 @@ var rekognition = new AWS.Rekognition({ "region": "us-west-2" });
 // Create a bucket and upload something into it
 var bucketName = 'mayank1';
 
+// rekognition.searchFacesByImage({
+//     CollectionId: "mayank",
+//     FaceMatchThreshold: 50,
+//     Image: {
+//         S3Object: {
+//             Bucket: bucketName,
+//             Name: '1498037383439'
+//         }
+//     },
+//     MaxFaces: 5
+// }, function(err, data) {
+
+//     console.log(JSON.stringify(data));
+//     data.FaceMatches.forEach(function(item) {
+//         var keyName = item.Face.ExternalImageId;
+//         console.log(keyName)
+
+//     });
+// })
 
 
-
-
-
-
-rekognition.searchFacesByImage({
+rekognition.searchFaces({
     CollectionId: "mayank",
-    Image: {
-        S3Object: {
-            Bucket: bucketName,
-            Name: 'targetSwati.jpg'
-        }
-    },
+    FaceId: "2ffac292-622c-5496-a543-7e4cc22e4960",
+    FaceMatchThreshold: 60,
     MaxFaces: 5
 }, function(err, data) {
+    console.log(JSON.stringify(data));
+    // data.FaceMatches.forEach(function(item) {
+    //     var keyName = item.Face.ExternalImageId;
+    //     console.log(keyName)
 
-     console.log('swati in mayank collection')
-     console.log(JSON.stringify(data));
+    // });
 })
-
-
-rekognition.searchFacesByImage({
-    CollectionId: "swati",
-    Image: {
-        S3Object: {
-            Bucket: bucketName,
-            Name: 'targetSwati.jpg'
-        }
-    },
-    MaxFaces: 5
-}, function(err, data) {
-    console.log('swati in swati collection')
-     console.log(JSON.stringify(data));
-})
-
-
-rekognition.searchFacesByImage({
-    CollectionId: "mayank",
-    Image: {
-        S3Object: {
-            Bucket: bucketName,
-            Name: 'targetMayank.jpg'
-        }
-    },
-    MaxFaces: 5
-}, function(err, data) {
-   console.log('mayank in mayank collection')
-     console.log(JSON.stringify(data));
-})
-
-
-rekognition.searchFacesByImage({
-    CollectionId: "swati",
-    Image: {
-        S3Object: {
-            Bucket: bucketName,
-            Name: 'targetMayank.jpg'
-        }
-    },
-    MaxFaces: 5
-}, function(err, data) {
-   console.log('mayank in swati collection')
-     console.log(JSON.stringify(data));
-})
-

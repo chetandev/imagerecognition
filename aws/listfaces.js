@@ -1,3 +1,4 @@
+// Load the SDK and UUID
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
 var fs = require('fs');
@@ -10,17 +11,15 @@ var bucketName = 'mayank1';
 
 
 
-rekognition.indexFaces({
+
+
+
+
+rekognition.listFaces({
     CollectionId: "mayank",
-    DetectionAttributes: [],
-    ExternalImageId: "mayank",
-    Image: {
-        S3Object: {
-            Bucket: bucketName,
-            Name: '1498048528221'
-        }
-    }
 }, function(err, data) {
-    if (err) console.log(err, err.stack); // an error occurred
-    else console.log(JSON.stringify(data));
+     console.log(JSON.stringify(data));
 })
+
+
+

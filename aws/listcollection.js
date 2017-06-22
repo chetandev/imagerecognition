@@ -13,9 +13,9 @@ var bodystream = fs.createReadStream('/Users/chetandev/Desktop/mayank.jpeg');
 
 
 
- rekognition.deleteCollection({
+ rekognition.listCollections({
   
-  CollectionId: "mayank"
+
  }, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
    else     console.log(data);           // successful response
@@ -25,15 +25,3 @@ var bodystream = fs.createReadStream('/Users/chetandev/Desktop/mayank.jpeg');
    }
    */
  });
-
- // rekognition.deleteCollection({
- //  CollectionId: "swati"
- // }, function(err, data) {
- //   if (err) console.log(err, err.stack); // an error occurred
- //   else     console.log(data);           // successful response
- //   /*
- //   data = {
- //    StatusCode: 200
- //   }
- //   */
- // });
