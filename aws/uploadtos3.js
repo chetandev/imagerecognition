@@ -9,93 +9,92 @@ var rekognition = new AWS.Rekognition({ "region": "us-west-2" });
 var bucketName = 'mayank1';
 
 
-var mayank = fs.createReadStream('/Users/chetandev/Desktop/mayank/IMG_0349.jpg');
+var pic = fs.createReadStream('/Users/chetandev/Desktop/swati/DSC01461.jpg');
 
-var swati = fs.createReadStream('/Users/chetandev/Desktop/swati/DSC01415.jpg');
+//var swati = fs.createReadStream('/Users/chetandev/Desktop/swati/DSC01415.jpg');
 
 
-var targetSwati = fs.createReadStream('/Users/chetandev/Desktop/swati/IMG_0438.jpg');
+//var targetSwati = fs.createReadStream('/Users/chetandev/Desktop/swati/IMG_0438.jpg');
 
-var targetMayank = fs.createReadStream('/Users/chetandev/Desktop/mayank/IMG_0384.jpg');
+// var targetMayank = fs.createReadStream('/Users/chetandev/Desktop/mayank/IMG_0384.jpg');
 
+
+// s3.createBucket({ Bucket: bucketName }, function() {
+//     var params = {
+//         Bucket: bucketName,
+//         Key: 'mayank.jpg',
+//         Body: mayank,
+//         Metadata: {
+//             'Content-Type': 'image/jpeg'
+//         }
+//     };
+//     s3.putObject(params, function(err, data) {
+//         if (err)
+//             console.log(err)
+//         else {
+
+//             console.log('mayank image uploaded successfully')
+
+//         }
+//     });
+// });
+
+
+// s3.createBucket({ Bucket: bucketName }, function() {
+//     var params = {
+//         Bucket: bucketName,
+//         Key: 'swati.jpg',
+//         Body: swati,
+//         Metadata: {
+//             'Content-Type': 'image/jpeg'
+//         }
+//     };
+//     s3.putObject(params, function(err, data) {
+//         if (err)
+//             console.log(err)
+//         else {
+
+//             console.log('swati image uploaded successfully')
+
+//         }
+//     });
+// });
+
+
+// s3.createBucket({ Bucket: bucketName }, function() {
+//     var params = {
+//         Bucket: bucketName,
+//         Key: 'targetSwati.jpg',
+//         Body: targetSwati,
+//         Metadata: {
+//             'Content-Type': 'image/jpeg'
+//         }
+//     };
+//     s3.putObject(params, function(err, data) {
+//         if (err)
+//             console.log(err)
+//         else {
+
+//             console.log('swati image uploaded successfully')
+
+//         }
+//     });
+// });
 
 s3.createBucket({ Bucket: bucketName }, function() {
     var params = {
         Bucket: bucketName,
-        Key: 'mayank.jpg',
-        Body: mayank,
-        Metadata: {
-            'Content-Type': 'image/jpeg'
-        }
+        Key: Date.now() + '.jpg',
+        Body: pic,
+        ACL: 'public-read',
+        ContentType: 'image/jpeg'
     };
     s3.putObject(params, function(err, data) {
         if (err)
             console.log(err)
         else {
 
-            console.log('mayank image uploaded successfully')
-
-        }
-    });
-});
-
-
-s3.createBucket({ Bucket: bucketName }, function() {
-    var params = {
-        Bucket: bucketName,
-        Key: 'swati.jpg',
-        Body: swati,
-        Metadata: {
-            'Content-Type': 'image/jpeg'
-        }
-    };
-    s3.putObject(params, function(err, data) {
-        if (err)
-            console.log(err)
-        else {
-
-            console.log('swati image uploaded successfully')
-
-        }
-    });
-});
-
-
-s3.createBucket({ Bucket: bucketName }, function() {
-    var params = {
-        Bucket: bucketName,
-        Key: 'targetSwati.jpg',
-        Body: targetSwati,
-        Metadata: {
-            'Content-Type': 'image/jpeg'
-        }
-    };
-    s3.putObject(params, function(err, data) {
-        if (err)
-            console.log(err)
-        else {
-
-            console.log('swati image uploaded successfully')
-
-        }
-    });
-});
-
-s3.createBucket({ Bucket: bucketName }, function() {
-    var params = {
-        Bucket: bucketName,
-        Key: 'targetMayank.jpg',
-        Body: targetMayank,
-        Metadata: {
-            'Content-Type': 'image/jpeg'
-        }
-    };
-    s3.putObject(params, function(err, data) {
-        if (err)
-            console.log(err)
-        else {
-
-            console.log('swati image uploaded successfully')
+            console.log(data)
 
         }
     });
