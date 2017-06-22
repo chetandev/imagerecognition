@@ -1,17 +1,24 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="graphite">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Upload images to server using Node JS</title>
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
-    <script src="Scripts/jquery.form.min.js"></script>
+    <meta charset="UTF-8">
+    <!-- <title>Server status </title> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/route.js"></script>
+    <script src="js/factory.js"></script>
+    <script src="js/controller.js"></script>
 </head>
 
-<body>
-    <form enctype="multipart/form-data" action="/api/upload" method="post">
-        <input type="file" name="imgUploader" multiple />
-        <input type="submit" name="submit" value="Upload" />
-    </form>
+<body ng-controller='rootController'>
+    <div class="tab">
+        <button class="tablinks" onclick="location.href='#/upload'">Upload</button>
+        <button class="tablinks" onclick="location.href='#/allimages'">All</button>
+        <button class="tablinks" onclick="location.href='#/people'">People</button>
+    </div>
+    <div ng-view></div>
 </body>
 
 </html>
