@@ -26,12 +26,12 @@ router.get('/faces/by/faceid/v1', validationBl.validateGetAllFacesHeaders, funct
                     .then(function(result) {
                         res.status(200).send(result);
                     })
-                    .catch(function(err){
-                    	res.status(500).send(err);
+                    .catch(function(err) {
+                        res.status(500).send(err);
                     })
 
             } else {
-                res.status(200).send("faces":[])
+                res.status(200).send("faces": [])
             }
 
         })
@@ -41,6 +41,16 @@ router.get('/faces/by/faceid/v1', validationBl.validateGetAllFacesHeaders, funct
             res.status(500).send(err)
         })
 
+});
+
+router.get('/uniquefaces/v1', validationBl.validateGetUniqueFacesHeaders, function(req, res) {
+    getAllPhotos.getUniquePhotos(req)
+        .then(function(result) {
+            res.status(200).send(result);
+        })
+        .catch(function(err) {
+            res.status(500).send(err);
+        })
 });
 
 

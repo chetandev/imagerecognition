@@ -24,8 +24,19 @@ function validateGetAllFacesHeaders(req, res, next) {
     }
 }
 
+function validateGetUniqueFacesHeaders(req, res, next) {
+    var userId = req.headers['x-user-id'];
+
+    if (userId) {
+        next();
+    } else {
+        var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
+        res.status(400).send(obj);
+    }
+}
 
 
 module.exports = {
     validateGetAllFacesHeaders
+    validateGetUniqueFacesHeaders
 }
