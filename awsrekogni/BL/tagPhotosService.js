@@ -3,7 +3,7 @@ var errorConstants = require(__base + '/resources/errorconstants.js');
 var Promise = require('bluebird');
 var async = require('async');
 
-const tagPhotosQuery = 'insert into unique_faces_by_users (user_id,face_id,contact_id) values (?,?,?)'
+const tagPhotosQuery = 'update unique_faces_by_users SET contact_id = ? where user_id = ? and face_id = ? IF EXISTS'
 
 function tagPhotos(req){
     return new Promise(function(resolve, reject) {
