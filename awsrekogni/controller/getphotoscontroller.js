@@ -4,6 +4,7 @@ var validationBl = require(__base + '/validation/validations.js');
 var errorConstants = require(__base + '/resources/errorconstants.js');
 var reBl = require(__base + '/rekognition.js')
 var getAllPhotos = require(__base + '/bl/getPhotosService.js');
+var Promise = require('bluebird')
 
 //var logger = require('../logger.js')
 

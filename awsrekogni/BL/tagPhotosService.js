@@ -16,6 +16,7 @@ function tagPhotos(req){
 
         cassandraDal.executeQuery(query, params)
             .then(function(result) {
+        
                 resolve("success")
             })
             .catch(function(err) {

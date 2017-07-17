@@ -60,8 +60,8 @@ function indexFaces(headers) {
             DetectionAttributes: [],
             Image: {
                 S3Object: {
-                    Bucket: headers["X-Aws-Bucket-Name"],
-                    Name: headers["X-Key-Name"]
+                    Bucket: headers["x-aws-bucket-name"],
+                    Name: headers["x-key-name"]
                 }
             }
         }

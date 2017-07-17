@@ -5,7 +5,7 @@ var rekognition = new AWS.Rekognition({ "region": "us-west-2" });
 var cassandraDal = require(__base + '/dal/cassandraDal.js');
 var reBl = require(__base + '/rekognition.js');
 
-const queryAll = `insert  into unique_faces_by_users (user_id,face_id,bounding_box,url)
+const queryAll = `insert  into all_photos_by_users (user_id,face_id,bounding_box,url)
 values (?,?,?,?);
 `
 const queryUnique = `insert  into unique_faces_by_users (user_id,face_id,bounding_box,url)

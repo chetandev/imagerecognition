@@ -31,7 +31,7 @@ function getPhotosList(req, faceids) {
     });
 }
 
-function getUniquePhotos(req){
+function getUniquePhotos(req) {
     return new Promise(function(resolve, reject) {
         var userId = req.headers["x-user-id"]
         params = [userId]

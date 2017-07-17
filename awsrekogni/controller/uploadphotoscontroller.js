@@ -9,12 +9,12 @@ var uploadBl = require(__base + '/BL/uploadservice.js')
 
 router.post('/v1', function(req, res, next) {
 
-    validationBl.validateHeaders(req)
+    validationBl.validateUplaodHeaders(req)
         .then(function() { //returns nothing 
             return reBl.indexFaces(req.headers) //indexes the faces in s3 image
         })
         .then(function(result) {
-            var url = process.env.S3_HOST + '/' + req.headers["X-Aws-Bucket-Name"] + '/' + req.headers["X-Key-Name"];
+            var url = process.env.S3_HOST + '/' + req.headers["x-aws-bucket-name"] + '/' + req.headers["x-key-name"];
             return uploadBl.processIndexResult(result, req.headers, url)
         })
         .then(function() {

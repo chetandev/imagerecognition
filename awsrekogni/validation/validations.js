@@ -36,26 +36,28 @@ function validateGetUniqueFacesHeaders(req, res, next) {
 }
 
 function validateTagFacesHeaders(req) {
-    var userId = req.headers['x-user-id'];
-    var faceId = req.headers['x-face-id'];
-    var contactId = req.headers['x-contact-id'];
+    return new Promise(function(resolve, reject) {
+        var userId = req.headers['x-user-id'];
+        var faceId = req.headers['x-face-id'];
+        var contactId = req.headers['x-contact-id'];
 
-    if (userId && faceId && contactId) {
-        resolve();
-    } else {
-        if (!userId) {
-            var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
-            reject(obj);
+        if (userId && faceId && contactId) {
+            resolve('passed');
+        } else {
+            if (!userId) {
+                var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
+                reject(obj);
+            }
+            if (!faceId) {
+                var obj = { "errors": ["face-id header missing"], "code": errorConstants.ERROR_CODE_X_FACE_ID }
+                reject(obj);
+            }
+            if (!contactId) {
+                var obj = { "errors": ["contact-id header missing"], "code": errorConstants.ERROR_CODE_X_CONTACT_ID }
+                reject(obj);
+            }
         }
-        if (!faceId) {
-            var obj = { "errors": ["face-id header missing"], "code": errorConstants.ERROR_CODE_X_FACE_ID }
-            reject(obj);
-        }
-        if (!contactId) {
-            var obj = { "errors": ["contact-id header missing"], "code": errorConstants.ERROR_CODE_X_CONTACT_ID }
-            reject(obj);
-        }
-    }
+    })
 }
 
 
@@ -68,10 +70,12 @@ function validateTagFacesHeaders(req) {
  */
 function validateUplaodHeaders(req) {
     return new Promise(function(resolve, reject) {
+
         var userId = req.headers['x-user-id'];
-        var s3Key = req.headers['X-Key-Name'];
-        var s3Bucket = req.headers['X-Aws-Bucket-Name'];
-        var s3Ext = req.headers['X-Extention-Name'];
+        var s3Key = req.headers['x-key-name'];
+        var s3Bucket = req.headers['x-aws-bucket-name'];
+        var s3Ext = req.headers['x-Extention-Name'];
+        //console.log(userId + " " + s3Key + " " + s3Bucket)
 
         if (!userId) {
             var obj = { "errors": ["userId  header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
@@ -88,11 +92,11 @@ function validateUplaodHeaders(req) {
 
             reject(obj)
         }
-        if (!s3Ext) {
-            var obj = { "errors": ["extention  header missing"], "code": errorConstants.ERROR_CODE_X_EXT }
+        // if (!s3Ext) {
+        //     var obj = { "errors": ["extention  header missing"], "code": errorConstants.ERROR_CODE_X_EXT }
 
-            reject(obj)
-        }
+        //     reject(obj)
+        // }
         resolve("passed");
 
     })
@@ -104,5 +108,6 @@ function validateUplaodHeaders(req) {
 module.exports = {
     validateGetAllFacesHeaders,
     validateGetUniqueFacesHeaders,
-    validateTagFacesHeaders
+    validateTagFacesHeaders,
+    validateUplaodHeaders
 }
