@@ -57,6 +57,6 @@ function getUniquePhotos(req){
 }
 
 module.exports = {
-    getPhotosList: getPhotosList
+    getPhotosList: getPhotosList,
     getUniquePhotos: getUniquePhotos
 }

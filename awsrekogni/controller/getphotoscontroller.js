@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var validationBl = require(__base + '/validation/validations.js');
 var errorConstants = require(__base + '/resources/errorconstants.js');
-var reBl = require(_base + 'rekognition.js')
+var reBl = require(__base + '/rekognition.js')
 var getAllPhotos = require(__base + '/bl/getPhotosService.js');
 
-var logger = require('../logger.js')
+//var logger = require('../logger.js')
 
 router.get('/faces/by/faceid/v1', validationBl.validateGetAllFacesHeaders, function(req, res) {
     var faceMatches = [];
@@ -30,7 +30,7 @@ router.get('/faces/by/faceid/v1', validationBl.validateGetAllFacesHeaders, funct
                     })
 
             } else {
-                res.status(200).send("faces": [])
+                res.status(200).send({ "faces": [] })
             }
 
         })

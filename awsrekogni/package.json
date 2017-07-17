@@ -9,6 +9,7 @@
     "aws-sdk": "^2.74.0",
     "bluebird": "^3.5.0",
     "body-parser": "~1.15.2",
+    "cassandra-driver": "^3.2.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",

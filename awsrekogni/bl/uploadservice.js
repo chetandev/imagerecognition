@@ -3,7 +3,7 @@ var AWS = require('aws-sdk');
 var s3 = new AWS.S3({ "region": "us-west-2" });
 var rekognition = new AWS.Rekognition({ "region": "us-west-2" });
 var cassandraDal = require(__base + '/dal/cassandraDal.js');
-var reBl = require(_base + '/rekognition.js');
+var reBl = require(__base + '/rekognition.js');
 
 const queryAll = `insert  into unique_faces_by_users (user_id,face_id,bounding_box,url)
 values (?,?,?,?);
@@ -42,7 +42,7 @@ function processIndexResult(result, headers, s3url) {
                 .then(function() {
                     return cassandraDal.put_in_cass(_queries)
 
-                }).then(funciton(result) {
+                }).then(function(result) {
                     resolve("success")
                 })
                 .catch(function(err) {

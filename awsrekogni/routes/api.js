@@ -22,9 +22,9 @@ var tagController = require('../controller/tagphotoscontroller.js');
 
 
 
-app.use('/upload', uploadphotoscontroller);
-app.use('/get', getphotoscontroller);
-app.use('/tag/image', tagphotoscontroller);
+app.use('/upload', uploadController);
+app.use('/get', getController);
+app.use('/tag/image', tagController);
 
 
 

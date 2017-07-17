@@ -47,11 +47,11 @@ function validateTagFacesHeaders(req) {
             var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
             reject(obj);
         }
-        if (!faceId){
+        if (!faceId) {
             var obj = { "errors": ["face-id header missing"], "code": errorConstants.ERROR_CODE_X_FACE_ID }
             reject(obj);
         }
-        if (!contactId){
+        if (!contactId) {
             var obj = { "errors": ["contact-id header missing"], "code": errorConstants.ERROR_CODE_X_CONTACT_ID }
             reject(obj);
         }
@@ -102,13 +102,7 @@ function validateUplaodHeaders(req) {
 
 
 module.exports = {
-<<<<<<< HEAD
     validateGetAllFacesHeaders,
-    validateUplaodHeaders
-}
-=======
-    validateGetAllFacesHeaders
-    validateGetUniqueFacesHeaders
+    validateGetUniqueFacesHeaders,
     validateTagFacesHeaders
 }
->>>>>>> 8f5190719637f39d6d34001cb670e5d2ddbfce54
