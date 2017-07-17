@@ -26,6 +26,48 @@ function validateGetAllFacesHeaders(req, res, next) {
 
 
 
+/**
+ * @param  {[type]}
+ * @param  {[type]}
+ * @param  {Function}
+ * @return {[type]}
+ */
+function validateUplaodHeaders(req) {
+    return new Promise(function(resolve, reject) {
+        var userId = req.headers['x-user-id'];
+        var s3Key = req.headers['X-Key-Name'];
+        var s3Bucket = req.headers['X-Aws-Bucket-Name'];
+        var s3Ext = req.headers['X-Extention-Name'];
+
+        if (!userId) {
+            var obj = { "errors": ["userId  header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
+            reject(obj)
+        }
+
+        if (!s3Key) {
+            var obj = { "errors": ["s3 key  header missing"], "code": errorConstants.ERROR_CODE_X_S3_KEY }
+
+            reject(obj)
+        }
+        if (!s3Bucket) {
+            var obj = { "errors": ["s3 bucket  header missing"], "code": errorConstants.ERROR_CODE_X_S3_BUCKET }
+
+            reject(obj)
+        }
+        if (!s3Ext) {
+            var obj = { "errors": ["extention  header missing"], "code": errorConstants.ERROR_CODE_X_EXT }
+
+            reject(obj)
+        }
+        resolve("passed");
+
+    })
+}
+
+
+
+
 module.exports = {
-    validateGetAllFacesHeaders
+    validateGetAllFacesHeaders,
+    validateUplaodHeaders
 }

@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var validationBl = require(__base + '/validation/validations.js');
 var errorConstants = require(__base + '/resources/errorconstants.js');
-var validationBl = require(__base + '/validation/validations.js');
 var reBl = require(_base + 'rekognition.js')
 var getAllPhotos = require(__base + '/bl/getPhotosService.js');
 

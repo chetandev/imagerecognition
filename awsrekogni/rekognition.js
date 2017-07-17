@@ -52,17 +52,16 @@ function searchFaces(faceId) {
 }
 
 
-function indexFaces(keyName) {
+function indexFaces(headers) {
 
     return new Promise(function(resolve, reject) {
         var params = {
             CollectionId: process.env.COLLECTION,
             DetectionAttributes: [],
-            ExternalImageId: keyName,
             Image: {
                 S3Object: {
-                    Bucket: process.env.BucketName,
-                    Name: keyName
+                    Bucket: headers["X-Aws-Bucket-Name"],
+                    Name: headers["X-Key-Name"]
                 }
             }
         }
