@@ -24,6 +24,40 @@ function validateGetAllFacesHeaders(req, res, next) {
     }
 }
 
+function validateGetUniqueFacesHeaders(req, res, next) {
+    var userId = req.headers['x-user-id'];
+
+    if (userId) {
+        next();
+    } else {
+        var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
+        res.status(400).send(obj);
+    }
+}
+
+function validateTagFacesHeaders(req) {
+    var userId = req.headers['x-user-id'];
+    var faceId = req.headers['x-face-id'];
+    var contactId = req.headers['x-contact-id'];
+
+    if (userId && faceId && contactId) {
+        resolve();
+    } else {
+        if (!userId) {
+            var obj = { "errors": ["user-id header missing"], "code": errorConstants.ERROR_CODE_X_USER_ID }
+            reject(obj);
+        }
+        if (!faceId){
+            var obj = { "errors": ["face-id header missing"], "code": errorConstants.ERROR_CODE_X_FACE_ID }
+            reject(obj);
+        }
+        if (!contactId){
+            var obj = { "errors": ["contact-id header missing"], "code": errorConstants.ERROR_CODE_X_CONTACT_ID }
+            reject(obj);
+        }
+    }
+}
+
 
 
 /**
@@ -68,6 +102,13 @@ function validateUplaodHeaders(req) {
 
 
 module.exports = {
+<<<<<<< HEAD
     validateGetAllFacesHeaders,
     validateUplaodHeaders
 }
+=======
+    validateGetAllFacesHeaders
+    validateGetUniqueFacesHeaders
+    validateTagFacesHeaders
+}
+>>>>>>> 8f5190719637f39d6d34001cb670e5d2ddbfce54
