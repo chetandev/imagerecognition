@@ -2,17 +2,31 @@ graphite.factory('data', ['$http', function($http) {
     return function() {
         var self = {};
         self.getAllImages = function() {
-            var promise = $http({ method: 'GET', url: '/api/all' });
+            var promise = $http({ method: 'GET', url: '/jcm/rekognition/get/uniquefaces/v1' });
             return promise;
         }
 
         self.getUniqueImages = function() {
-            var promise = $http({ method: 'GET', url: '/api/people' });
+            var promise = $http({
+                method: 'GET',
+                url: '/jcm/rekognition/get/uniquefaces/v1',
+                headers: {
+                    "x-user-id": '1'
+                }
+            });
             return promise;
         }
 
         self.getImageByFaceId = function(faceId) {
-            var promise = $http({ method: 'GET', url: '/api/getsimilarimages/' + faceId });
+            console.log(faceId)
+            var promise = $http({
+                method: 'GET',
+                url: '/jcm/rekognition/get/faces/by/faceid/v1',
+                headers: {
+                    "x-user-id": '1',
+                    "x-face-id": '' + faceId
+                }
+            });
             return promise;
         }
         return self;

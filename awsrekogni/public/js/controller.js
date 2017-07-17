@@ -44,7 +44,7 @@ graphite.controller('peopleController', ['$scope', 'data', function($scope, data
     factory.getUniqueImages()
         .then(function(result) {
             console.log(result)
-            $scope.images = result.data
+            $scope.images = result.data.faces
             $scope.gif = false;
 
         })
@@ -55,7 +55,7 @@ graphite.controller('peopleController', ['$scope', 'data', function($scope, data
         factory.getImageByFaceId(faceId)
             .then(function(result) {
                 console.log(result)
-                $scope.imagesByFaceId = result.data
+                $scope.imagesByFaceId = result.data.faces
                 $scope.gif = false;
 
             })

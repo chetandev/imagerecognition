@@ -3,20 +3,20 @@ var errorConstants = require(__base + '/resources/errorconstants.js');
 var Promise = require('bluebird');
 var async = require('async');
 
-const tagPhotosQuery = 'update unique_faces_by_users SET contact_id = ? where user_id = ? and face_id = ? IF EXISTS'
+const tagPhotosQuery = 'update unique_faces_by_users SET contact_id = ? where user_id = ? and face_id = ? IF EXISTS;'
 
-function tagPhotos(req){
+function tagPhotos(req) {
     return new Promise(function(resolve, reject) {
         var userId = req.headers["x-user-id"]
         var faceId = req.headers["x-face-id"]
         var contactId = req.headers["x-contact-id"]
 
-        params = [userId, faceId, contactId]
+        params = [contactId, userId, faceId]
         query = tagPhotosQuery
 
         cassandraDal.executeQuery(query, params)
             .then(function(result) {
-        
+                console.log(result)
                 resolve("success")
             })
             .catch(function(err) {

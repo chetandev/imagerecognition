@@ -5,14 +5,14 @@ var errorConstants = require(__base + '/resources/errorconstants.js');
 var validationBl = require(__base + '/validation/validations.js');
 var reBl = require(__base + '/rekognition.js')
 var tagPhoto = require(__base + '/bl/tagPhotosService.js');
-var Promise = require('bluebird');
+
 
 //var logger = require('../logger.js')
 
 router.post('/v1', function(req, res) {
     validationBl.validateTagFacesHeaders(req)
         .then(function(result) {
-            tagPhoto.tagPhotos(req)
+            return tagPhoto.tagPhotos(req)
                 .then(function(result) {
                     res.status(200).send(result)
                 })
