@@ -11,7 +11,7 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'GET',
                 url: '/jcm/rekognition/get/uniquefaces/v1',
                 headers: {
-                    "x-user-id": '1'
+                    "x-user-id": '2'
                 }
             });
             return promise;
@@ -23,8 +23,21 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'GET',
                 url: '/jcm/rekognition/get/faces/by/faceid/v1',
                 headers: {
-                    "x-user-id": '1',
+                    "x-user-id": '2',
                     "x-face-id": '' + faceId
+                }
+            });
+            return promise;
+        }
+
+        self.addTag = function(contactId, faceId) {
+            var promise = $http({
+                method: 'POST',
+                url: '/jcm/rekognition/tag/image/v1',
+                headers: {
+                    "x-user-id": '2',
+                    "x-face-id": '' + faceId,
+                    "x-contact-id": '' + contactId
                 }
             });
             return promise;

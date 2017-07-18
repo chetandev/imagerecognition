@@ -6,9 +6,9 @@ var s3 = new AWS.S3({ "region": "us-west-2" });
 var rekognition = new AWS.Rekognition({ "region": "us-west-2" });
 
 // Create a bucket and upload something into it
-var bucketName = 'mayank1';
-var keyName = 'mayank1.jpg';
-var bodystream = fs.createReadStream('/Users/chetandev/Desktop/mayank.jpeg');
+//var bucketName = 'mayank1';
+//var keyName = 'mayank1.jpg';
+//var bodystream = fs.createReadStream('/Users/chetandev/Desktop/mayank.jpeg');
 
 
 

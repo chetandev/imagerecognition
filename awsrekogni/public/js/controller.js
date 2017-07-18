@@ -63,4 +63,13 @@ graphite.controller('peopleController', ['$scope', 'data', function($scope, data
 
     }
 
+    $scope.tag = function(faceId, contactId) {
+        console.log(contactId + " " + faceId)
+        factory.addTag(contactId, faceId)
+            .then(function(result) {
+                console.log(result)
+            })
+            .catch(function(err) {})
+    }
+
 }]);

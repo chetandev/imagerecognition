@@ -5,6 +5,9 @@
                 <img src="{{item.url}}" alt="Mountain View" style="width:128px;height:128px;">
                 <p>{{item.contactid}}</p>
             </a>
+            <button type="button" ng-click="showtxt = !showtxt" >tag</button>
+            <input type="text"  ng-show="showtxt" ng-model="contactId" ng-blur="tag(item.faceid,contactId)">
+      
         </li>
     </ul>
 </div>
