@@ -28,9 +28,10 @@ graphite.controller('uploadController', ['$scope', 'fileUploadService', function
 graphite.controller('imagesController', ['$scope', 'data', function($scope, data) {
     $scope.gif = true;
     var factory = new data();
+
     factory.getAllImages()
         .then(function(result) {
-            $scope.images = result.data
+            $scope.images = result.data.faces
             $scope.gif = false;
 
         })

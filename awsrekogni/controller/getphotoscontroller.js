@@ -53,5 +53,15 @@ router.get('/uniquefaces/v1', validationBl.validateGetUniqueFacesHeaders, functi
         })
 });
 
+router.get('/all/v1', validationBl.validateGetUniqueFacesHeaders, function(req, res) {
+    getAllPhotos.getAllPhotos(req)
+        .then(function(result) {
+            res.status(200).send(result);
+        })
+        .catch(function(err) {
+            res.status(500).send(err);
+        })
+});
+
 
 module.exports = router;

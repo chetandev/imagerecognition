@@ -2,7 +2,13 @@ graphite.factory('data', ['$http', function($http) {
     return function() {
         var self = {};
         self.getAllImages = function() {
-            var promise = $http({ method: 'GET', url: '/jcm/rekognition/get/uniquefaces/v1' });
+            var promise = $http({
+                method: 'GET',
+                url: '/jcm/rekognition/get/all/v1',
+                headers: {
+                    "x-user-id": '2'
+                }
+            });
             return promise;
         }
 
