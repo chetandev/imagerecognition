@@ -1,4 +1,5 @@
 graphite.factory('data', ['$http', function($http) {
+    var USERID = '111'
     return function() {
         var self = {};
         self.getAllImages = function() {
@@ -6,7 +7,7 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'GET',
                 url: '/jcm/rekognition/get/all/v1',
                 headers: {
-                    "x-user-id": '2'
+                    "x-user-id": USERID
                 }
             });
             return promise;
@@ -17,7 +18,7 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'GET',
                 url: '/jcm/rekognition/get/uniquefaces/v1',
                 headers: {
-                    "x-user-id": '2'
+                    "x-user-id": USERID
                 }
             });
             return promise;
@@ -29,7 +30,7 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'GET',
                 url: '/jcm/rekognition/get/faces/by/faceid/v1',
                 headers: {
-                    "x-user-id": '2',
+                    "x-user-id": USERID,
                     "x-face-id": '' + faceId
                 }
             });
@@ -41,7 +42,7 @@ graphite.factory('data', ['$http', function($http) {
                 method: 'POST',
                 url: '/jcm/rekognition/tag/image/v1',
                 headers: {
-                    "x-user-id": '2',
+                    "x-user-id": USERID,
                     "x-face-id": '' + faceId,
                     "x-contact-id": '' + contactId
                 }

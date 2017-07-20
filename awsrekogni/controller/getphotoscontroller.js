@@ -10,7 +10,7 @@ var Promise = require('bluebird')
 
 router.get('/faces/by/faceid/v1', validationBl.validateGetAllFacesHeaders, function(req, res) {
     var faceMatches = [];
-    reBl.searchFaces(req.headers['x-face-id'])
+    reBl.searchFaces(req.headers['x-face-id'], req.headers['x-user-id'])
         .then(function(result) {
             var matchedFacesArr = result.FaceMatches;
             if (matchedFacesArr.length > 0) {

@@ -2,7 +2,7 @@
     <ul id="imageslist">
         <li ng-repeat="item in images">
             <a ng-click="getImageByFaceId(item.faceid)" href="">
-                <img src="{{item.url}}" alt="Mountain View" style="width:128px;height:128px;">
+                <img src="{{item.url}}" alt="Mountain View" style="width:128px;height:196px;image-orientation: from-image;">
                 <p>{{item.contactid}}</p>
             </a>
             <button type="button" ng-click="showtxt = !showtxt" >tag</button>
@@ -14,7 +14,7 @@
 <div>
     <ul id="imageslist">
         <li ng-repeat="item in imagesByFaceId">
-            <img src="{{item.url}}" alt="" style="width:128px;height:128px;">
+            <img src="{{item.url}}" alt="" style="width:128px;height:150px;image-orientation: from-image;">
         </li>
     </ul>
 </div>
