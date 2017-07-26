@@ -2,12 +2,11 @@
     <ul id="imageslist">
         <li ng-repeat="item in images">
             <a ng-click="getImageByFaceId(item.faceid)" href="">
-                <img src="{{item.url}}" alt="Mountain View" style="width:128px;height:128px;">
+                <img class="photo" src="{{item.url}}" alt="Mountain View" style="width:128px;height:128px;">
                 <p>{{item.contactid}}</p>
             </a>
-            <button type="button" ng-click="showtxt = !showtxt" >tag</button>
-            <input type="text"  ng-show="showtxt" ng-model="contactId" ng-blur="tag(item.faceid,contactId)">
-      
+            <button type="button" ng-click="showtxt = !showtxt">tag</button>
+            <input type="text" ng-show="showtxt" ng-model="contactId" ng-blur="tag(item.faceid,contactId)">
         </li>
     </ul>
 </div>
