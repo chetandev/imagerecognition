@@ -15,7 +15,8 @@ var pkgcloud = require('pkgcloud');
 var https = require('https'),
     cas;
 
-
+var Stream = require('stream')
+var toArray = require('stream-to-array')
 require('ssl-root-cas').inject();
 
 cas = https.globalAgent.options.ca;
@@ -34,17 +35,35 @@ var client = require('pkgcloud').storage.createClient({
     region: 'RegionOne',
 });
 
+var options = {
+
+    container: 'dev.jiocloud.photos', // this can be either the name or an instance of container
+    remote: 'swati.jpg', // name of the new file
+};
 
 
-client.getFile('dev.jiocloud.photos', 'testimage.jpg', function(err, file) {
 
-    rekognition.indexFaces({
+var data = [];
+var img =  client.download(options);
+
+
+img.on('data', function(chunk) {
+   data.push(chunk)
+});
+
+img.on('end',function(){
+   
+rekognition.indexFaces({
         CollectionId: "mayank",
         DetectionAttributes: [],
-        ExternalImageId: "mayank",
-        Byte: new Buffer(JSON.stringify(file))
+        ExternalImageId: "swati",
+        Image:{
+                   Bytes: Buffer.concat(data)
+              }
     }, function(err, data) {
         if (err) console.log(err, err.stack); // an error occurred
         else console.log(JSON.stringify(data));
     })
-})
+
+
+});

@@ -31,5 +31,5 @@ var client = require('pkgcloud').storage.createClient({
 
 client.getFile('dev.jiocloud.photos', 'testimage.jpg', function(err, file) {
    
-    console.log(new Buffer(JSON.stringify(file)))
+    console.log(file)
 })
